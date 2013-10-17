@@ -6,6 +6,6 @@ public interface SensitiveWordSearchAlgorithm {
     
     public void init(List<String>  sensitiveWords);
     
-    public String search(String text, int startIndex);
+    public SensitiveWordSearchResult search(String text, int startIndex);
     
 }

@@ -22,10 +22,11 @@ public class SensitiveWordKiller {
     public List<String> search(String text) {
         List<String> words = new ArrayList<>();
         
-        String word;
+        SensitiveWordSearchResult result;
         int index = 0;
-        while ((word = searchAlgorithm.search(text, index)) != null) {
-            index += word.length();
+        while ((result = searchAlgorithm.search(text, index)) != null) {
+            String word = result.getWord();
+            index = result.getIndex() + word.length();
             words.add(word);
         }
         
@@ -33,7 +34,25 @@ public class SensitiveWordKiller {
     }
     
     public String replace(String text) {
-        return text;
+        SensitiveWordSearchResult result = searchAlgorithm.search(text, 0);
+        if (result == null) {
+           return text; 
+        }
+        
+        StringBuilder buf = new StringBuilder();
+        buf.append(text.substring(0, result.getIndex()));
+        
+        int index = 0;
+        while ((result = searchAlgorithm.search(text, index)) != null) {
+            buf.append(text.substring(index, result.getIndex()));
+            String word = result.getWord();
+            buf.append(word);
+            
+            index = result.getIndex() + word.length();
+        }
+        
+        buf.append(index);
+        return buf.toString();
     }
     
 }

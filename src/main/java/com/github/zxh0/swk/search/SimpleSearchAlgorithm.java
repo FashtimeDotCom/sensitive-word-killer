@@ -1,6 +1,7 @@
 package com.github.zxh0.swk.search;
 
 import com.github.zxh0.swk.SensitiveWordSearchAlgorithm;
+import com.github.zxh0.swk.SensitiveWordSearchResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -28,10 +29,11 @@ public class SimpleSearchAlgorithm implements SensitiveWordSearchAlgorithm {
     }
 
     @Override
-    public String search(String text, int startIndex) {
+    public SensitiveWordSearchResult search(String text, int startIndex) {
         for (String word : sensitiveWords) {
-            if (text.indexOf(word, startIndex) > -1) {
-                return word;
+            int idx = text.indexOf(word, startIndex);
+            if (idx >= 0) {
+                return new SensitiveWordSearchResult(word, idx);
             }
         }
         
