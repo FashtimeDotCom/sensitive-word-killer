@@ -4,16 +4,18 @@ import java.util.List;
 
 public class SensitiveWordKiller {
     
-    public boolean check(String str) {
+    private List<String> sensitiveWords;
+    
+    public boolean check(String text) {
         return false;
     }
     
-    public List<String> search(String str) {
+    public List<String> search(String text) {
         return null;
     }
     
-    public String replace(String str) {
-        return str;
+    public String replace(String text) {
+        return text;
     }
     
 }
