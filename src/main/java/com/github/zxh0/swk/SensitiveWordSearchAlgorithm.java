@@ -2,14 +2,10 @@ package com.github.zxh0.swk;
 
 import java.util.List;
 
-public class SensitiveWordSearchAlgorithm {
+public interface SensitiveWordSearchAlgorithm {
     
-    public void init(List<String>  sensitiveWords) {
-        
-    }
+    public void init(List<String>  sensitiveWords);
     
-    public void search(String text) {
-        
-    }
+    public String search(String text, int startIndex);
     
 }

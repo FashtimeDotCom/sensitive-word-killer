@@ -5,6 +5,7 @@ import java.util.List;
 public class SensitiveWordKiller {
     
     private List<String> sensitiveWords;
+    private SensitiveWordSearchAlgorithm searchAlgorithm;
     
     public boolean check(String text) {
         return false;
