@@ -18,10 +18,6 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
         this.sensitiveWords = new ArrayList<>(sensitiveWords);
         initSensitiveWords();
         initFirstChars();
-        
-        System.out.println(this.sensitiveWords);
-        System.out.println(Arrays.toString(firstChars));
-        System.out.println(Arrays.toString(firstWordIndexes));
     }
     
     private void initSensitiveWords() {

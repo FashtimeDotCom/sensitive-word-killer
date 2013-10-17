@@ -4,8 +4,11 @@ import java.util.List;
 
 public class SensitiveWordKiller {
     
-    private List<String> sensitiveWords;
-    private SensitiveWordSearchAlgorithm searchAlgorithm;
+    private final SensitiveWordSearchAlgorithm searchAlgorithm;
+
+    public SensitiveWordKiller(SensitiveWordSearchAlgorithm searchAlgorithm) {
+        this.searchAlgorithm = searchAlgorithm;
+    }
     
     public boolean check(String text) {
         return false;

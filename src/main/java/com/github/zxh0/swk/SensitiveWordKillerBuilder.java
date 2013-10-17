@@ -1,5 +1,6 @@
 package com.github.zxh0.swk;
 
+import com.github.zxh0.swk.search.BinarySearchAlgorithm;
 import java.util.List;
 
 public class SensitiveWordKillerBuilder {
@@ -21,13 +22,13 @@ public class SensitiveWordKillerBuilder {
         if (sensitiveWords == null) {
             throw new RuntimeException("Missing sensitive words!");
         }
+        
         if (searchAlgorithm == null) {
-            // TODO
+            searchAlgorithm = new BinarySearchAlgorithm();
+            searchAlgorithm.init(sensitiveWords);
         }
         
-        SensitiveWordKiller killer = new SensitiveWordKiller();
-        
-        return killer;
+        return new SensitiveWordKiller(searchAlgorithm);
     }
     
 }
