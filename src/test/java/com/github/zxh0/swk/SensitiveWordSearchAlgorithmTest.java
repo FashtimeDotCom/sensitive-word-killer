@@ -1,5 +1,6 @@
 package com.github.zxh0.swk;
 
+import com.github.zxh0.swk.search.BinarySearchAlgorithm;
 import com.github.zxh0.swk.search.SimpleSearchAlgorithm;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +21,20 @@ public class SensitiveWordSearchAlgorithmTest {
         Assert.assertEquals("他妈的", algorithm.search("他妈的", 0));
         Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0));
         Assert.assertEquals("妈的", algorithm.search("妈的", 0));
+        Assert.assertEquals(null, algorithm.search("大姨妈", 0));
+    }
+    
+    @Test
+    public void binarySearchAlgorithm() {
+        SensitiveWordSearchAlgorithm algorithm = new BinarySearchAlgorithm();
+        algorithm.init(sensitiveWords);
+        
+        Assert.assertEquals("他妈的巴子的", algorithm.search("他妈的巴子的", 0));
+        Assert.assertEquals("他妈的巴子的", algorithm.search("去他妈的巴子的！", 0));
+        Assert.assertEquals("他妈的", algorithm.search("他妈的", 0));
+        Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0));
+        Assert.assertEquals("妈的", algorithm.search("妈的", 0));
+        Assert.assertEquals(null, algorithm.search("大姨妈", 0));
     }
     
 }

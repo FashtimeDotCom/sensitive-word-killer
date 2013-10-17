@@ -26,10 +26,12 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
     private void initFirstChars() {
         final int wordCount = sensitiveWords.size();
         firstChars = new char[wordCount];
-        for (int i = wordCount; i >= 0; i--) {
+        wordIndexes = new int[wordCount];
+        
+        for (int i = wordCount - 1; i >= 0; i--) {
             final char firstChar = sensitiveWords.get(i).charAt(0);
             firstChars[i] = firstChar;
-            if (i == wordCount) {
+            if (i == wordCount - 1) {
                 wordIndexes[i] = i;
             } else {
                 if (firstChar == firstChars[i + 1]) {
