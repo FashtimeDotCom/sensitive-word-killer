@@ -16,11 +16,11 @@ public class SensitiveWordSearchAlgorithmTest {
         SensitiveWordSearchAlgorithm algorithm = new SimpleSearchAlgorithm();
         algorithm.init(sensitiveWords);
         
-        Assert.assertEquals("他妈的巴子的", algorithm.search("他妈的巴子的", 0));
-        Assert.assertEquals("他妈的巴子的", algorithm.search("去他妈的巴子的！", 0));
-        Assert.assertEquals("他妈的", algorithm.search("他妈的", 0));
-        Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0));
-        Assert.assertEquals("妈的", algorithm.search("妈的", 0));
+        Assert.assertEquals("他妈的巴子的", algorithm.search("他妈的巴子的", 0).getWord());
+        Assert.assertEquals("他妈的巴子的", algorithm.search("去他妈的巴子的！", 0).getWord());
+        Assert.assertEquals("他妈的", algorithm.search("他妈的", 0).getWord());
+        Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0).getWord());
+        Assert.assertEquals("妈的", algorithm.search("妈的", 0).getWord());
         Assert.assertEquals(null, algorithm.search("大姨妈", 0));
     }
     
@@ -29,11 +29,11 @@ public class SensitiveWordSearchAlgorithmTest {
         SensitiveWordSearchAlgorithm algorithm = new BinarySearchAlgorithm();
         algorithm.init(sensitiveWords);
         
-        Assert.assertEquals("他妈的巴子的", algorithm.search("他妈的巴子的", 0));
-        Assert.assertEquals("他妈的巴子的", algorithm.search("去他妈的巴子的！", 0));
-        Assert.assertEquals("他妈的", algorithm.search("他妈的", 0));
-        Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0));
-        Assert.assertEquals("妈的", algorithm.search("妈的", 0));
+        Assert.assertEquals("他妈的巴子的", algorithm.search("他妈的巴子的", 0).getWord());
+        Assert.assertEquals("他妈的巴子的", algorithm.search("去他妈的巴子的！", 0).getWord());
+        Assert.assertEquals("他妈的", algorithm.search("他妈的", 0).getWord());
+        Assert.assertEquals("他妈的", algorithm.search("去他妈的", 0).getWord());
+        Assert.assertEquals("妈的", algorithm.search("妈的", 0).getWord());
         Assert.assertEquals(null, algorithm.search("大姨妈", 0));
     }
     

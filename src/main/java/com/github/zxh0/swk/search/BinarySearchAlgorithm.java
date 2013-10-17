@@ -8,26 +8,27 @@ import java.util.List;
 
 public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
 
-    private String[] sensitiveWords; // 敏感词列表
+    private String[] sensitiveWords; // 敏感词数组
     private char[] firstChars; // 由敏感词第一个汉字组成的数组
     private int[] firstWordIndexes;
     
     @Override
     public void init(List<String> sensitiveWords) {
         this.sensitiveWords = sensitiveWords.toArray(new String[0]);
-        initSensitiveWords();
+        sortSensitiveWords();
         initFirstChars();
     }
     
-    private void initSensitiveWords() {
+    // 对敏感词数组排序
+    private void sortSensitiveWords() {
         Arrays.sort(sensitiveWords, new Comparator<String>() {
             
             @Override
             public int compare(String s1, String s2) {
-                if (s1.length() == s2.length()) {
-                    return Character.compare(s1.charAt(0), s2.charAt(0));
-                } else {
+                if (s1.charAt(0) == s2.charAt(0)) {
                     return Integer.compare(s2.length(), s1.length());
+                } else {
+                    return Character.compare(s1.charAt(0), s2.charAt(0));
                 }
             }
             
