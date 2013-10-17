@@ -1,2 +1,2 @@
-sensitive-words-killer
+sensitive-word-killer
 ======================
