@@ -1,6 +1,7 @@
 package com.github.zxh0.swk.search;
 
 import com.github.zxh0.swk.SensitiveWordSearchAlgorithm;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SimpleSearchAlgorithm implements SensitiveWordSearchAlgorithm {
@@ -9,7 +10,7 @@ public class SimpleSearchAlgorithm implements SensitiveWordSearchAlgorithm {
     
     @Override
     public void init(List<String> sensitiveWords) {
-        this.sensitiveWords = sensitiveWords;
+        this.sensitiveWords = new ArrayList<>(sensitiveWords);
     }
 
     @Override
