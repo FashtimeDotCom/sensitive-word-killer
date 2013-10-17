@@ -1,5 +1,6 @@
 package com.github.zxh0.swk;
 
+import com.github.zxh0.swk.replace.SimpleReplaceStrategy;
 import com.github.zxh0.swk.search.BinarySearchAlgorithm;
 import java.util.List;
 
@@ -7,6 +8,7 @@ public class SensitiveWordKillerBuilder {
     
     private List<String> sensitiveWords;
     private SensitiveWordSearchAlgorithm searchAlgorithm;
+    private SensitiveWordReplaceStrategy replaceStrategy;
     
     public SensitiveWordKillerBuilder setSensitiveWords(List<String> sensitiveWords) {
         this.sensitiveWords = sensitiveWords;
@@ -15,6 +17,11 @@ public class SensitiveWordKillerBuilder {
     
     public SensitiveWordKillerBuilder setSearchAlgorithm(SensitiveWordSearchAlgorithm algorithm) {
         this.searchAlgorithm = algorithm;
+        return this;
+    }
+
+    public SensitiveWordKillerBuilder setReplaceStrategy(SensitiveWordReplaceStrategy replaceStrategy) {
+        this.replaceStrategy = replaceStrategy;
         return this;
     }
     
@@ -28,7 +35,11 @@ public class SensitiveWordKillerBuilder {
             searchAlgorithm.init(sensitiveWords);
         }
         
-        return new SensitiveWordKiller(searchAlgorithm);
+        if (replaceStrategy == null) {
+            replaceStrategy = new SimpleReplaceStrategy("*");
+        }
+        
+        return new SensitiveWordKiller(searchAlgorithm, replaceStrategy);
     }
     
 }

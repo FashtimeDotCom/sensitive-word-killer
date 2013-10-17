@@ -6,9 +6,13 @@ import java.util.List;
 public class SensitiveWordKiller {
     
     private final SensitiveWordSearchAlgorithm searchAlgorithm;
+    private final SensitiveWordReplaceStrategy replaceStrategy;
 
-    public SensitiveWordKiller(SensitiveWordSearchAlgorithm searchAlgorithm) {
+    public SensitiveWordKiller(SensitiveWordSearchAlgorithm searchAlgorithm,
+            SensitiveWordReplaceStrategy replaceStrategy) {
+        
         this.searchAlgorithm = searchAlgorithm;
+        this.replaceStrategy = replaceStrategy;
     }
     
     public boolean check(String text) {
