@@ -2,27 +2,25 @@ package com.github.zxh0.swk.search;
 
 import com.github.zxh0.swk.SensitiveWordSearchAlgorithm;
 import com.github.zxh0.swk.SensitiveWordSearchResult;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
 
-    private List<String> sensitiveWords;
-    private char[] firstChars;
+    private String[] sensitiveWords; // 敏感词列表
+    private char[] firstChars; // 由敏感词第一个汉字组成的数组
     private int[] firstWordIndexes;
     
     @Override
     public void init(List<String> sensitiveWords) {
-        this.sensitiveWords = new ArrayList<>(sensitiveWords);
+        this.sensitiveWords = sensitiveWords.toArray(new String[0]);
         initSensitiveWords();
         initFirstChars();
     }
     
     private void initSensitiveWords() {
-        Collections.sort(sensitiveWords, new Comparator<String>() {
+        Arrays.sort(sensitiveWords, new Comparator<String>() {
             
             @Override
             public int compare(String s1, String s2) {
@@ -37,12 +35,12 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
     }
     
     private void initFirstChars() {
-        final int wordCount = sensitiveWords.size();
+        final int wordCount = sensitiveWords.length;
         firstChars = new char[wordCount];
         firstWordIndexes = new int[wordCount];
         
         for (int i = 0; i < wordCount; i++) {
-            final char firstChar = sensitiveWords.get(i).charAt(0);
+            final char firstChar = sensitiveWords[i].charAt(0);
             firstChars[i] = firstChar;
             if (i == 0 || firstChar != firstChars[i - 1]) {
                 firstWordIndexes[i] = i;
@@ -60,7 +58,7 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
             if (idxOfFirstChars > 0) {
                 for (int j = firstWordIndexes[idxOfFirstChars]; j < firstChars.length; j++) {
                     if (firstChars[j] == ch) {
-                        String word = sensitiveWords.get(j);
+                        String word = sensitiveWords[j];
                         int idx = text.indexOf(word, startIndex);
                         if (idx >= 0) {
                             return new SensitiveWordSearchResult(word, idx);
