@@ -23,7 +23,11 @@ public class SensitiveWordKillerTest {
     
     @Test
     public void check() {
-        
+        Assert.assertTrue(killer.check("草"));
+        Assert.assertTrue(killer.check("青草"));
+        Assert.assertTrue(killer.check("草地"));
+        Assert.assertTrue(killer.check("青草地"));
+        Assert.assertFalse(killer.check("我爱吃蛋黄派"));
     }
     
     @Test
