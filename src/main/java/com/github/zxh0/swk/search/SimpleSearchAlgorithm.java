@@ -32,11 +32,11 @@ public class SimpleSearchAlgorithm implements SensitiveWordSearchAlgorithm {
     }
 
     @Override
-    public SensitiveWordSearchResult search(String text, int startIndex) {
-        for (int i = startIndex; i < text.length(); i++) {
+    public SensitiveWordSearchResult search(String text, int offset) {
+        for (; offset < text.length(); offset++) {
             for (String word : sensitiveWords) {
-                if (text.startsWith(word, i)) {
-                    return new SensitiveWordSearchResult(word, i);
+                if (text.startsWith(word, offset)) {
+                    return new SensitiveWordSearchResult(word, offset);
                 }
             }
         }
