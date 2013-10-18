@@ -30,13 +30,13 @@ public class SensitiveWordKiller {
      * @return 所有找到的敏感词
      */
     public List<String> search(String text) {
-        int startIndex = 0;
+        int offset = 0;
         SensitiveWordSearchResult result;
         List<String> words = new ArrayList<>();
         
-        while ((result = searchAlgorithm.search(text, startIndex)) != null) {
+        while ((result = searchAlgorithm.search(text, offset)) != null) {
             String word = result.getWord();
-            startIndex = result.getOffset() + word.length();
+            offset = result.getOffset() + word.length();
             words.add(word);
         }
         
@@ -49,24 +49,24 @@ public class SensitiveWordKiller {
            return text; 
         }
         
-        int index = result.getOffset();
+        int offset = result.getOffset();
         String word = result.getWord();
         
         StringBuilder buf = new StringBuilder();
-        buf.append(text.substring(0, index));
+        buf.append(text.substring(0, offset));
         buf.append(replaceStrategy.replace(word));
-        index += word.length();
+        offset += word.length();
         
-        while ((result = searchAlgorithm.search(text, index)) != null) {
+        while ((result = searchAlgorithm.search(text, offset)) != null) {
             //index = result.getIndex();
-            buf.append(text.substring(index, result.getOffset()));
+            buf.append(text.substring(offset, result.getOffset()));
             word = result.getWord();
             buf.append(word);
             
-            index = result.getOffset() + word.length();
+            offset = result.getOffset() + word.length();
         }
         
-        buf.append(text.substring(index));
+        buf.append(text.substring(offset));
         return buf.toString();
     }
     
