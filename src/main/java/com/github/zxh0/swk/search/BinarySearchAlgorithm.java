@@ -52,21 +52,27 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
     }
 
     @Override
-    public SensitiveWordSearchResult search(String text, int startIndex) {
-        for (int i = startIndex; i < text.length(); i++) {
-            char ch = text.charAt(i);
-            int idxOfFirstChars = Arrays.binarySearch(firstChars, ch);
-            if (idxOfFirstChars > 0) {
-                for (int j = firstWordIndexes[idxOfFirstChars]; j < firstChars.length; j++) {
-                    if (firstChars[j] == ch) {
-                        String word = sensitiveWords[j];
-                        int idx = text.indexOf(word, startIndex);
-                        if (idx >= 0) {
-                            return new SensitiveWordSearchResult(word, idx);
-                        }
-                    } else {
-                        break;
+    public SensitiveWordSearchResult search(String text, int offset) {
+        for (; offset < text.length(); offset++) {
+            // 文本中的某个字
+            char ch = text.charAt(offset);
+            
+            // 看这个字是否是某个敏感词的第一个字
+            int idxOfCh = Arrays.binarySearch(firstChars, ch);
+            if (idxOfCh < 0) {
+                continue;
+            }
+            
+            // 这个字是某个敏感词的第一个字
+            for (int j = firstWordIndexes[idxOfCh]; j < firstChars.length; j++) {
+                if (firstChars[j] == ch) {
+                    String word = sensitiveWords[j];
+                    int idx = text.indexOf(word, offset);
+                    if (idx >= 0) {
+                        return new SensitiveWordSearchResult(word, idx);
                     }
+                } else {
+                    break;
                 }
             }
         }
