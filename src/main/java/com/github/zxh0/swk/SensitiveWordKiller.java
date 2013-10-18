@@ -17,21 +17,26 @@ public class SensitiveWordKiller {
     
     /**
      * 检查文字里是否包含敏感词。
-     * @param text
+     * @param text 文本
      * @return 如果文字包含敏感词返回true，否则返回false
      */
     public boolean check(String text) {
         return searchAlgorithm.search(text, 0) != null;
     }
     
+    /**
+     * 搜索文本中包含的敏感词。
+     * @param text 文本
+     * @return 所有找到的敏感词
+     */
     public List<String> search(String text) {
+        int startIndex = 0;
+        SensitiveWordSearchResult result;
         List<String> words = new ArrayList<>();
         
-        SensitiveWordSearchResult result;
-        int index = 0;
-        while ((result = searchAlgorithm.search(text, index)) != null) {
+        while ((result = searchAlgorithm.search(text, startIndex)) != null) {
             String word = result.getWord();
-            index = result.getIndex() + word.length();
+            startIndex = result.getIndex() + word.length();
             words.add(word);
         }
         
