@@ -32,12 +32,13 @@ public class SensitiveWordKillerBuilder {
         
         if (searchAlgorithm == null) {
             searchAlgorithm = new BinarySearchAlgorithm();
-            searchAlgorithm.init(sensitiveWords);
         }
         
         if (replaceStrategy == null) {
             replaceStrategy = new SimpleReplaceStrategy("*");
         }
+        
+        searchAlgorithm.init(sensitiveWords);
         
         return new SensitiveWordKiller(searchAlgorithm, replaceStrategy);
     }

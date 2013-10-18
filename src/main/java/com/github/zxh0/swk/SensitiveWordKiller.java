@@ -39,19 +39,21 @@ public class SensitiveWordKiller {
            return text; 
         }
         
+        String word = result.getWord();
         StringBuilder buf = new StringBuilder();
         buf.append(text.substring(0, result.getIndex()));
+        buf.append(replaceStrategy.replace(word));
         
         int index = 0;
         while ((result = searchAlgorithm.search(text, index)) != null) {
             buf.append(text.substring(index, result.getIndex()));
-            String word = result.getWord();
+            word = result.getWord();
             buf.append(word);
             
             index = result.getIndex() + word.length();
         }
         
-        buf.append(index);
+        buf.append(text.substring(index));
         return buf.toString();
     }
     
