@@ -21,7 +21,7 @@ public class SensitiveWordSearchResult {
     }
 
     /**
-     * @return 敏感词在文本中的位置 
+     * @return 敏感词在文本中的位置
      */
     public int getIndex() {
         return index;

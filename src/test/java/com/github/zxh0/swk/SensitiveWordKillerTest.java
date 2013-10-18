@@ -31,6 +31,19 @@ public class SensitiveWordKillerTest {
     }
     
     @Test
+    public void search() {
+        Assert.assertEquals(Arrays.asList("草"), killer.search("草"));
+        Assert.assertEquals(Arrays.asList("草"), killer.search("青草"));
+        Assert.assertEquals(Arrays.asList("草"), killer.search("草地"));
+        Assert.assertEquals(Arrays.asList("草"), killer.search("青草地"));
+        
+        Assert.assertEquals(Arrays.asList(), killer.search("我爱吃蛋黄派"));
+        
+        Assert.assertEquals(Arrays.asList("草", "草泥马"),
+                killer.search("那边的草地上有草泥马"));
+    }
+    
+    @Test
     public void test() {
         Assert.assertEquals("*", killer.replace("草"));
         Assert.assertEquals("青*", killer.replace("青草"));
