@@ -6,11 +6,11 @@ package com.github.zxh0.swk;
 public class SensitiveWordSearchResult {
     
     private final String word;
-    private final int index;
+    private final int offset;
 
-    public SensitiveWordSearchResult(String word, int index) {
+    public SensitiveWordSearchResult(String word, int offset) {
         this.word = word;
-        this.index = index;
+        this.offset = offset;
     }
     
     /**
@@ -23,8 +23,8 @@ public class SensitiveWordSearchResult {
     /**
      * @return 敏感词在文本中的位置
      */
-    public int getIndex() {
-        return index;
+    public int getOffset() {
+        return offset;
     }
     
 }

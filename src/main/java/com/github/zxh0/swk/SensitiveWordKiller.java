@@ -36,7 +36,7 @@ public class SensitiveWordKiller {
         
         while ((result = searchAlgorithm.search(text, startIndex)) != null) {
             String word = result.getWord();
-            startIndex = result.getIndex() + word.length();
+            startIndex = result.getOffset() + word.length();
             words.add(word);
         }
         
@@ -49,7 +49,7 @@ public class SensitiveWordKiller {
            return text; 
         }
         
-        int index = result.getIndex();
+        int index = result.getOffset();
         String word = result.getWord();
         
         StringBuilder buf = new StringBuilder();
@@ -59,11 +59,11 @@ public class SensitiveWordKiller {
         
         while ((result = searchAlgorithm.search(text, index)) != null) {
             //index = result.getIndex();
-            buf.append(text.substring(index, result.getIndex()));
+            buf.append(text.substring(index, result.getOffset()));
             word = result.getWord();
             buf.append(word);
             
-            index = result.getIndex() + word.length();
+            index = result.getOffset() + word.length();
         }
         
         buf.append(text.substring(index));
