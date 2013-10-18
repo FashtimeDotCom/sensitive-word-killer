@@ -43,6 +43,11 @@ public class SensitiveWordKiller {
         return words;
     }
     
+    /**
+     * 将文本中的敏感词按替换规则替换掉。
+     * @param text 文本
+     * @return 替换掉敏感词的文本
+     */
     public String replace(String text) {
         SensitiveWordSearchResult result = searchAlgorithm.search(text, 0);
         if (result == null) {
