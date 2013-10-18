@@ -14,14 +14,20 @@ public class SensitiveWordKillerTest {
             "干", "干妈", "老干妈",
             "妈", "妈蛋", "妈蛋黄派");
     
+    private SensitiveWordKiller killer = new SensitiveWordKillerBuilder()
+            .setSensitiveWords(sensitiveWords)
+            .setSearchAlgorithm(new BinarySearchAlgorithm())
+            .setReplaceStrategy(new SimpleReplaceStrategy("*"))
+            .build();
+    
+    
+    @Test
+    public void check() {
+        
+    }
+    
     @Test
     public void test() {
-        SensitiveWordKiller killer = new SensitiveWordKillerBuilder()
-                .setSensitiveWords(sensitiveWords)
-                .setSearchAlgorithm(new BinarySearchAlgorithm())
-                .setReplaceStrategy(new SimpleReplaceStrategy("*"))
-                .build();
-        
         Assert.assertEquals("*", killer.replace("草"));
         Assert.assertEquals("青*", killer.replace("青草"));
         Assert.assertEquals("*地", killer.replace("草地"));
