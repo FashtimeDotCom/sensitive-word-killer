@@ -45,6 +45,7 @@ public class SensitiveWordSearchAlgorithmTest {
     
     private void twoWords(SensitiveWordSearchAlgorithm algorithm) {
         Assert.assertEquals("草", algorithm.search("那边的草地上有草泥马", 0).getWord());
+        Assert.assertEquals("草泥马", algorithm.search("那边的草地上有草泥马", 4).getWord());
     }
     
     private void longestWord(SensitiveWordSearchAlgorithm algorithm) {
