@@ -1,5 +1,8 @@
 package com.github.zxh0.swk;
 
+/**
+ * 敏感词搜索结果。
+ */
 public class SensitiveWordSearchResult {
     
     private final String word;
@@ -10,10 +13,16 @@ public class SensitiveWordSearchResult {
         this.index = index;
     }
     
+    /**
+     * @return 搜索到的敏感词
+     */
     public String getWord() {
         return word;
     }
 
+    /**
+     * @return 敏感词在文本中的位置 
+     */
     public int getIndex() {
         return index;
     }

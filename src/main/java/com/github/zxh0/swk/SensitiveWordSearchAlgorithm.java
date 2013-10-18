@@ -13,9 +13,9 @@ public interface SensitiveWordSearchAlgorithm {
     public void init(List<String> sensitiveWords);
     
     /**
-     * 在文本中搜索敏感词。
+     * 从某个位置开始，在文本中搜索敏感词。
      * @param text 文本
-     * @param startIndex 从哪里开始搜索
+     * @param startIndex 开始位置
      * @return 搜索结果；或者null，如果找不到敏感词的话
      */
     public SensitiveWordSearchResult search(String text, int startIndex);

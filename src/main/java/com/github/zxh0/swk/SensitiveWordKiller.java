@@ -15,6 +15,11 @@ public class SensitiveWordKiller {
         this.replaceStrategy = replaceStrategy;
     }
     
+    /**
+     * 检查文字里是否包含敏感词。
+     * @param text
+     * @return 如果文字包含敏感词返回true，否则返回false
+     */
     public boolean check(String text) {
         return searchAlgorithm.search(text, 0) != null;
     }
