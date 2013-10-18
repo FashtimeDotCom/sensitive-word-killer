@@ -8,6 +8,7 @@ import java.util.List;
 
 public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
 
+    private int sensitiveWordCount; // 敏感词数量
     private String[] sensitiveWords; // 敏感词数组
     private char[] firstChars; // 由敏感词第一个汉字组成的数组
     private int[] firstWordIndexes;
@@ -15,6 +16,7 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
     @Override
     public void init(List<String> sensitiveWords) {
         this.sensitiveWords = sensitiveWords.toArray(new String[0]);
+        sensitiveWordCount = sensitiveWords.size();
         sortSensitiveWords();
         initFirstChars();
     }
@@ -35,12 +37,12 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
         });
     }
     
+    // 提取敏感词的第一个字
     private void initFirstChars() {
-        final int wordCount = sensitiveWords.length;
-        firstChars = new char[wordCount];
-        firstWordIndexes = new int[wordCount];
+        firstChars = new char[sensitiveWordCount];
+        firstWordIndexes = new int[sensitiveWordCount];
         
-        for (int i = 0; i < wordCount; i++) {
+        for (int i = 0; i < sensitiveWordCount; i++) {
             final char firstChar = sensitiveWords[i].charAt(0);
             firstChars[i] = firstChar;
             if (i == 0 || firstChar != firstChars[i - 1]) {
@@ -63,16 +65,16 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
                 continue;
             }
             
-            // 这个字是某个敏感词的第一个字
-            for (int j = firstWordIndexes[idxOfCh]; j < firstChars.length; j++) {
-                if (firstChars[j] == ch) {
-                    String word = sensitiveWords[j];
-                    int idx = text.indexOf(word, offset);
-                    if (idx >= 0) {
-                        return new SensitiveWordSearchResult(word, idx);
-                    }
-                } else {
+            // 这个字是某个敏感词的第一个字，找到以这个字开头的最长的那个敏感词
+            int indexOfWord = firstWordIndexes[idxOfCh];
+            for (; indexOfWord < sensitiveWordCount; indexOfWord++) {
+                if (firstChars[indexOfWord] != ch) {
                     break;
+                }
+                
+                String word = sensitiveWords[indexOfWord];
+                if (text.startsWith(word, offset)) {
+                    return new SensitiveWordSearchResult(word, offset);
                 }
             }
         }
