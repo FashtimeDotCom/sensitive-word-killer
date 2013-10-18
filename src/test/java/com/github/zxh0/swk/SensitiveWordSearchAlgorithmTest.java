@@ -15,14 +15,25 @@ public class SensitiveWordSearchAlgorithmTest {
             "妈", "妈蛋", "妈蛋黄派");
     
     @Test
-    public void oneWord() {
-        SensitiveWordSearchAlgorithm simple = new SimpleSearchAlgorithm();
-        simple.init(sensitiveWords);
-        oneWord(simple);
+    public void simpleSearchAlgorithm() {
+        SimpleSearchAlgorithm algorithm = new SimpleSearchAlgorithm();
+        algorithm.init(sensitiveWords);
         
-        SensitiveWordSearchAlgorithm binary = new BinarySearchAlgorithm();
-        binary.init(sensitiveWords);
-        oneWord(binary);
+        test(algorithm);
+    }
+    
+    @Test
+    public void binarySearchAlgorithm() {
+        BinarySearchAlgorithm algorithm = new BinarySearchAlgorithm();
+        algorithm.init(sensitiveWords);
+        
+        test(algorithm);
+    }
+    
+    private void test(SensitiveWordSearchAlgorithm algorithm) {
+        oneWord(algorithm);
+        twoWords(algorithm);
+        longestWord(algorithm);
     }
     
     private void oneWord(SensitiveWordSearchAlgorithm algorithm) {
@@ -32,15 +43,8 @@ public class SensitiveWordSearchAlgorithmTest {
         Assert.assertEquals("草", algorithm.search("青草地", 0).getWord());
     }
     
-    @Test
-    public void longestWord() {
-        SensitiveWordSearchAlgorithm simple = new SimpleSearchAlgorithm();
-        simple.init(sensitiveWords);
-        longestWord(simple);
-        
-        SensitiveWordSearchAlgorithm binary = new BinarySearchAlgorithm();
-        binary.init(sensitiveWords);
-        longestWord(binary);
+    private void twoWords(SensitiveWordSearchAlgorithm algorithm) {
+        Assert.assertEquals("草", algorithm.search("那边的草地上有草泥马", 0).getWord());
     }
     
     private void longestWord(SensitiveWordSearchAlgorithm algorithm) {
