@@ -29,7 +29,24 @@ public class SensitiveWordSearchAlgorithmTest {
         Assert.assertEquals("草", algorithm.search("草", 0).getWord());
         Assert.assertEquals("草", algorithm.search("青草", 0).getWord());
         Assert.assertEquals("草", algorithm.search("草地", 0).getWord());
+        Assert.assertEquals("草", algorithm.search("青草地", 0).getWord());
     }
     
+    @Test
+    public void longestWord() {
+        SensitiveWordSearchAlgorithm simple = new SimpleSearchAlgorithm();
+        simple.init(sensitiveWords);
+        longestWord(simple);
+        
+        SensitiveWordSearchAlgorithm binary = new BinarySearchAlgorithm();
+        binary.init(sensitiveWords);
+        longestWord(binary);
+    }
+    
+    private void longestWord(SensitiveWordSearchAlgorithm algorithm) {
+        Assert.assertEquals("草泥", algorithm.search("草泥", 0).getWord());
+        Assert.assertEquals("草泥马", algorithm.search("草泥马", 0).getWord());
+        Assert.assertEquals("草泥马", algorithm.search("草泥马是一种动物", 0).getWord());
+    }
     
 }
