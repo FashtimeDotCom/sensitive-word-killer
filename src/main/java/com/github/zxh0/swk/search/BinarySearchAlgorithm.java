@@ -28,7 +28,7 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
             @Override
             public int compare(String s1, String s2) {
                 if (s1.charAt(0) == s2.charAt(0)) {
-                    return Integer.compare(s2.length(), s1.length());
+                    return - Integer.compare(s1.length(), s2.length());
                 } else {
                     return Character.compare(s1.charAt(0), s2.charAt(0));
                 }
@@ -57,10 +57,10 @@ public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
     public SensitiveWordSearchResult search(String text, int offset) {
         for (; offset < text.length(); offset++) {
             // 文本中的某个字
-            char ch = text.charAt(offset);
+            final char ch = text.charAt(offset);
             
             // 看这个字是否是某个敏感词的第一个字
-            int idxOfCh = Arrays.binarySearch(firstChars, ch);
+            final int idxOfCh = Arrays.binarySearch(firstChars, ch);
             if (idxOfCh < 0) {
                 continue;
             }
