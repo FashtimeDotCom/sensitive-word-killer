@@ -27,6 +27,8 @@ public class SensitiveWordKillerTest {
         Assert.assertTrue(killer.check("青草"));
         Assert.assertTrue(killer.check("草地"));
         Assert.assertTrue(killer.check("青草地"));
+        Assert.assertTrue(killer.check("那边的草地上有草泥马"));
+        
         Assert.assertFalse(killer.check("我爱吃蛋黄派"));
     }
     
@@ -37,10 +39,10 @@ public class SensitiveWordKillerTest {
         Assert.assertEquals(Arrays.asList("草"), killer.scan("草地"));
         Assert.assertEquals(Arrays.asList("草"), killer.scan("青草地"));
         
-        Assert.assertEquals(Arrays.asList(), killer.scan("我爱吃蛋黄派"));
-        
         Assert.assertEquals(Arrays.asList("草", "草泥马"),
                 killer.scan("那边的草地上有草泥马"));
+        
+        Assert.assertEquals(Arrays.asList(), killer.scan("我爱吃蛋黄派"));
     }
     
     @Test
@@ -49,7 +51,7 @@ public class SensitiveWordKillerTest {
         Assert.assertEquals("青*", killer.filter("青草"));
         Assert.assertEquals("*地", killer.filter("草地"));
         Assert.assertEquals("青*地", killer.filter("青草地"));
-        //Assert.assertEquals("***和***", killer.replace("草泥马和草泥马"));
+        Assert.assertEquals("那边的*地上有***", killer.filter("那边的草地上有草泥马"));
     }
     
 }
