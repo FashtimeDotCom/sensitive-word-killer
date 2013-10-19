@@ -52,8 +52,10 @@ public class SensitiveWordKiller {
      * @return 替换掉敏感词的文本
      */
     public String filter(String text) {
+        // 找出第一个敏感词
         SensitiveWordSearchResult result = searchAlgorithm.search(text, 0);
         if (result == null) {
+           // 文本不包含敏感词
            return text; 
         }
         
@@ -65,6 +67,7 @@ public class SensitiveWordKiller {
         buf.append(replaceStrategy.replace(word));
         offset += word.length();
         
+        // 继续找敏感词
         while ((result = searchAlgorithm.search(text, offset)) != null) {
             //index = result.getIndex();
             buf.append(text.substring(offset, result.getOffset()));
