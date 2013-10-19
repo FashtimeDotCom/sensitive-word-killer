@@ -3,6 +3,9 @@ package com.github.zxh0.swk;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 用来搜索和过滤敏感词。
+ */
 public class SensitiveWordKiller {
     
     private final SensitiveWordSearchAlgorithm searchAlgorithm;
@@ -16,7 +19,7 @@ public class SensitiveWordKiller {
     }
     
     /**
-     * 检查文字里是否包含敏感词。
+     * 检查文本里是否包含敏感词。
      * @param text 文本
      * @return 如果文字包含敏感词返回true，否则返回false
      */
@@ -25,11 +28,11 @@ public class SensitiveWordKiller {
     }
     
     /**
-     * 搜索文本中包含的敏感词。
+     * 扫描文本，找出所有敏感词。
      * @param text 文本
      * @return 所有找到的敏感词
      */
-    public List<String> search(String text) {
+    public List<String> scan(String text) {
         int offset = 0;
         SensitiveWordSearchResult result;
         List<String> words = new ArrayList<>();
@@ -48,7 +51,7 @@ public class SensitiveWordKiller {
      * @param text 文本
      * @return 替换掉敏感词的文本
      */
-    public String replace(String text) {
+    public String filter(String text) {
         SensitiveWordSearchResult result = searchAlgorithm.search(text, 0);
         if (result == null) {
            return text; 

@@ -31,24 +31,24 @@ public class SensitiveWordKillerTest {
     }
     
     @Test
-    public void search() {
-        Assert.assertEquals(Arrays.asList("草"), killer.search("草"));
-        Assert.assertEquals(Arrays.asList("草"), killer.search("青草"));
-        Assert.assertEquals(Arrays.asList("草"), killer.search("草地"));
-        Assert.assertEquals(Arrays.asList("草"), killer.search("青草地"));
+    public void scan() {
+        Assert.assertEquals(Arrays.asList("草"), killer.scan("草"));
+        Assert.assertEquals(Arrays.asList("草"), killer.scan("青草"));
+        Assert.assertEquals(Arrays.asList("草"), killer.scan("草地"));
+        Assert.assertEquals(Arrays.asList("草"), killer.scan("青草地"));
         
-        Assert.assertEquals(Arrays.asList(), killer.search("我爱吃蛋黄派"));
+        Assert.assertEquals(Arrays.asList(), killer.scan("我爱吃蛋黄派"));
         
         Assert.assertEquals(Arrays.asList("草", "草泥马"),
-                killer.search("那边的草地上有草泥马"));
+                killer.scan("那边的草地上有草泥马"));
     }
     
     @Test
-    public void test() {
-        Assert.assertEquals("*", killer.replace("草"));
-        Assert.assertEquals("青*", killer.replace("青草"));
-        Assert.assertEquals("*地", killer.replace("草地"));
-        Assert.assertEquals("青*地", killer.replace("青草地"));
+    public void filter() {
+        Assert.assertEquals("*", killer.filter("草"));
+        Assert.assertEquals("青*", killer.filter("青草"));
+        Assert.assertEquals("*地", killer.filter("草地"));
+        Assert.assertEquals("青*地", killer.filter("青草地"));
         //Assert.assertEquals("***和***", killer.replace("草泥马和草泥马"));
     }
     
