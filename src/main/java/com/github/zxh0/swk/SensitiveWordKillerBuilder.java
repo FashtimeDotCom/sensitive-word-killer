@@ -35,7 +35,7 @@ public class SensitiveWordKillerBuilder {
         }
         
         if (replaceStrategy == null) {
-            replaceStrategy = new SimpleReplaceStrategy("*");
+            replaceStrategy = new SimpleReplaceStrategy('*');
         }
         
         searchAlgorithm.init(sensitiveWords);

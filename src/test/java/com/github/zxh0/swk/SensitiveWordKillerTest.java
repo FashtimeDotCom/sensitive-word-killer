@@ -17,7 +17,7 @@ public class SensitiveWordKillerTest {
     private SensitiveWordKiller killer = new SensitiveWordKillerBuilder()
             .setSensitiveWords(sensitiveWords)
             .setSearchAlgorithm(new BinarySearchAlgorithm())
-            .setReplaceStrategy(new SimpleReplaceStrategy("*"))
+            .setReplaceStrategy(new SimpleReplaceStrategy('*'))
             .build();
     
     

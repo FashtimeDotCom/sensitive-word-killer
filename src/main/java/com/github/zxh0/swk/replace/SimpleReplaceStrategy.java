@@ -7,12 +7,16 @@ import com.github.zxh0.swk.SensitiveWordReplaceStrategy;
  */
 public class SimpleReplaceStrategy implements SensitiveWordReplaceStrategy {
     
+    // 假设大部分敏感词不超过10个字
+    private static final int MAX_CHAR_COUNT = 10;
+    
+    // 预先计算好的字符串
     private String[] replacements;
 
-    public SimpleReplaceStrategy(String replacement) {
-        replacements = new String[10];
-        replacements[0] = replacement;
-        for (int i = 1; i < 10; i++) {
+    public SimpleReplaceStrategy(final char replacement) {
+        replacements = new String[MAX_CHAR_COUNT + 1];
+        replacements[0] = "";
+        for (int i = 1; i < replacements.length; i++) {
             replacements[i] = replacements[i - 1] + replacement;
         }
     }
@@ -23,13 +27,13 @@ public class SimpleReplaceStrategy implements SensitiveWordReplaceStrategy {
             return sensitiveWord;
         }
         
-        // 敏感词不超过10个字
-        if (sensitiveWord.length() <= 10) {
-            return replacements[sensitiveWord.length() - 1];
+        // 敏感词字数不超过MAX_CHAR_COUNT
+        if (sensitiveWord.length() < MAX_CHAR_COUNT) {
+            return replacements[sensitiveWord.length()];
         }
         
-        // 敏感词超过10个字
-        return replacements[9];
+        // 敏感词字数超过MAX_CHAR_COUNT
+        return replacements[MAX_CHAR_COUNT];
     }
     
 }
