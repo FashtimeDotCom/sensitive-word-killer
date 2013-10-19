@@ -59,23 +59,18 @@ public class SensitiveWordKiller {
            return text; 
         }
         
-        int offset = result.getOffset();
-        String word = result.getWord();
-        
+        int offset = 0;
         StringBuilder buf = new StringBuilder();
-        buf.append(text.substring(0, offset));
-        buf.append(replaceStrategy.replace(word));
-        offset += word.length();
         
         // 继续找敏感词
-        while ((result = searchAlgorithm.search(text, offset)) != null) {
-            //index = result.getIndex();
+        do {
+            String word = result.getWord();
+            
             buf.append(text.substring(offset, result.getOffset()));
-            word = result.getWord();
             buf.append(replaceStrategy.replace(word));
             
             offset = result.getOffset() + word.length();
-        }
+        } while ((result = searchAlgorithm.search(text, offset)) != null);
         
         buf.append(text.substring(offset));
         return buf.toString();
