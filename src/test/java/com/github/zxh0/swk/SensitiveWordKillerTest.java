@@ -52,6 +52,7 @@ public class SensitiveWordKillerTest {
         Assert.assertEquals("*地", killer.filter("草地"));
         Assert.assertEquals("青*地", killer.filter("青草地"));
         Assert.assertEquals("那边的*地上有***", killer.filter("那边的草地上有草泥马"));
+        Assert.assertEquals("我爱吃蛋黄派", killer.filter("我爱吃蛋黄派"));
     }
     
 }

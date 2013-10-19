@@ -69,7 +69,7 @@ public class SensitiveWordKiller {
             //index = result.getIndex();
             buf.append(text.substring(offset, result.getOffset()));
             word = result.getWord();
-            buf.append(word);
+            buf.append(replaceStrategy.replace(word));
             
             offset = result.getOffset() + word.length();
         }
