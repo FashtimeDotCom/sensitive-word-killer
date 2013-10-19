@@ -25,7 +25,7 @@ public class SimpleSearchAlgorithm implements SensitiveWordSearchAlgorithm {
 
             @Override
             public int compare(String s1, String s2) {
-                return Integer.compare(s2.length(), s1.length());
+                return - Integer.compare(s1.length(), s2.length());
             }
             
         });
