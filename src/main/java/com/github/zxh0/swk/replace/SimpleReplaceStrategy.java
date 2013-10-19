@@ -2,6 +2,9 @@ package com.github.zxh0.swk.replace;
 
 import com.github.zxh0.swk.SensitiveWordReplaceStrategy;
 
+/**
+ * 简单的敏感词替换策略，把敏感词里的每一个字都替换成另外一个字。
+ */
 public class SimpleReplaceStrategy implements SensitiveWordReplaceStrategy {
     
     private String[] replacements;
@@ -20,11 +23,13 @@ public class SimpleReplaceStrategy implements SensitiveWordReplaceStrategy {
             return sensitiveWord;
         }
         
+        // 敏感词不超过10个字
         if (sensitiveWord.length() <= 10) {
             return replacements[sensitiveWord.length() - 1];
         }
         
-        return replacements[10];
+        // 敏感词超过10个字
+        return replacements[9];
     }
     
 }

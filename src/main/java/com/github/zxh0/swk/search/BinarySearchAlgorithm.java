@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * 遍历文本中的每一个字，首先用二分法查找是否某个敏感词以该字开头，如果否则继续下一个字，
+ * 如果是则试图找到以该字开头且字数最多的敏感词。
+ */
 public class BinarySearchAlgorithm implements SensitiveWordSearchAlgorithm {
 
     private int sensitiveWordCount; // 敏感词数量
